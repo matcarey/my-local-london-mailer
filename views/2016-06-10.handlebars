@@ -1,1 +1,34 @@
-<h1>Hello World</h1>
+<div class="content"><h1>Hi {{name}}</h1>
+  <div class="introduction">
+    <p>Firstly, thanks for signing up. I've been busy getting new events listed while also
+      launching a new design of the
+      site.</p>
+    <p>We're now listing an average of 14 events per day in SE15, everything from Knitting to Yoga, from Toddler groups
+      to
+      Pub Quizzes.</p>
+    <p>There's new events being added all the time so keep checking back at <a href="http://my-local.london/">my-local.london</a>
+    </p>
+    <p>So thanks again for signing up, if you have any feedback, good or bad, just hit reply and I'll take it on
+      board</p>
+    <p>Mat Carey<br/>Founder &amp; Chief Unicyclist</p>
+  </div>
+  {{#each subscribedCategories}}
+    <h3>{{title}}{{#if showAllLink}} - <a href="{{showAllLink}}">Show all</a>{{/if}}</h3>
+    {{#if events}}
+      <ul>
+        {{#each events}}
+          <li>
+            <a href="{{link}}">
+              <h4>
+                {{name}}
+              </h4>
+              <p>
+                {{description}}
+              </p>
+            </a>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  {{/each}}
+</div>

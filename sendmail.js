@@ -1,5 +1,8 @@
-var api_key = process.env.MLL_MAILGUN_API_KEY;
-var domain = process.env.MLL_MAILGUN_DOMAIN;
+const rp = require('request-promise'),
+  juice = require('juice'),
+  api_key = process.env.MLL_MAILGUN_API_KEY,
+  domain = process.env.MLL_MAILGUN_DOMAIN;
+
 if (!api_key) {
   throw new Error('API Key Requeired');
 }
@@ -8,17 +11,22 @@ if (!domain) {
 }
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
-var data = {
-  from: 'Excited User <me@samples.mailgun.org>',
-  to: 'serobnic@mail.ru',
-  subject: 'Hello',
-  text: 'Testing some Mailgun awesomness!'
-};
+const subject = 'My Local London Update';
 
-mailgun.messages().send(data, function (error, body) {
-  if (error) {
-    console.error(error);
-    throw new Error('OMG!', error);
-  }
-  console.log(body);
-});
+rp.get('http://localhost:7811/?name=Mat&subject=' + encodeURIComponent(subject))
+  .then(function (originalHtml) {
+    var html = juice(originalHtml);
+    var data = {
+      from: 'My Local London <info@my-local.london>',
+      to: 'Mat <mat@matcarey.co.uk>',
+      subject: subject,
+      html: html
+    };
+    mailgun.messages().send(data, function (error, body) {
+      if (error) {
+        console.error(error);
+        throw new Error('OMG!', error);
+      }
+      console.log(body);
+    });
+  });

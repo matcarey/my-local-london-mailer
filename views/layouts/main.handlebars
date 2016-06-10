@@ -1,3 +1,53 @@
-<h1>Hi Mum!</h1>
-
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{subject}}</title>
+  <style>
+    html, body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    body {
+      background: #ccc;
+    }
+    .main {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;;
+      padding-bottom: 50px;
+    }
+    .main-header {
+      background: url({{headerUrl}}) no-repeat center center;
+      height: 160px;
+      width: 100%;
+      margin: 0;
+    }
+    h1 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 18px;
+    }
+    .content {
+      padding: 15px;
+    }
+    .introduction {
+      border-bottom: 1px dotted black;
+      margin-bottom: 20px;
+    }
+    :link, :visited, a {
+      color: inherit;
+    }
+    h3 a {
+      font-weight: normal;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<main class="main">
+  <div class="main-header"></div>
 {{{body}}}
+  </main>
+</body>
+</html>
