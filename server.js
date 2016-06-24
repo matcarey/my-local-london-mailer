@@ -10,12 +10,14 @@ app.engine('handlebars', exphbs({
 
 app.set('view engine', 'handlebars');
 
-app.get('/', function (req, res) {
+
+
+app.get('/mailout/2016-06.01', function (req, res) {
   const baseUrl = process.env.MLL_MAILER_MAILER_SERVER,
     webBaseUrl = process.env.MLL_MAILER_WEB_SERVER;
-  res.render('2016-06-10', _.extend({}, req.query, {
+  res.render('2016-06.01', _.extend({}, req.query, {
     baseUrl: baseUrl,
-    headerUrl: baseUrl + '/images/header-01.jpg',
+    headerUrl: baseUrl + '/mailout/images/header-01.jpg',
     subscribedCategories: [
       {
         title: 'Health',
